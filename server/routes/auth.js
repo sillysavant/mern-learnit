@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const { json } = require('express')
 
+const ACCESS_TOKEN_SECRET = 'ndiuwebf923bry3bdqw9d2b3d9uefi9w'
+
 // @route POST /api/auth/register
 // @desc Register user
 // @access Public
@@ -45,7 +47,7 @@ router.post('/register', async(req, res) => {
         // Return token
         const accessToken = jwt.sign(
             {userId: newUser._id},
-            process.env.ACCESS_TOKEN_SECRET
+            ACCESS_TOKEN_SECRET
         )
         res.json({
             success: true,
@@ -99,7 +101,7 @@ router.post('/login', async(req, res) => {
         // Return token
         const accessToken = jwt.sign(
           {userId: user._id},
-          process.env.ACCESS_TOKEN_SECRET
+          ACCESS_TOKEN_SECRET
         )
 
         res.json({

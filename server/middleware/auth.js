@@ -22,3 +22,5 @@ const verifyToken = (req, res, next) => {
         res.status(403).json({success: false, message: 'Invalid token'})
     }
 }
+
+module.exports = verifyToken

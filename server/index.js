@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 
-const authRouter = require('./routes/auth')
+const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post')
 
 const connectDB = async() => {
@@ -18,12 +18,11 @@ const connectDB = async() => {
     }
 }
 
-connectDB()
+connectDB();
 
 const app = express()
-const port = 3000
-
 app.use(express.json())
+const port = 3000
 
 app.use('/api/auth', authRouter)
 app.use('/api/posts', postRouter)
