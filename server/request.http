@@ -15,3 +15,34 @@ Content-Type: application/json
     "username": "user01",
     "password": "1234"
 }
+
+###
+
+POST https://localhost:3000/api/posts
+Content-Type: application/json
+Authorization: 
+
+{
+    "title": "my first post",
+    "description": "learn express",
+    "url": "expressjs.com",
+    "status": "LEARNING"
+}
+
+###
+
+GET https://localhost:3000/api/posts
+Content-Type: application/json
+Authorization: 
+
+###
+PUT https://localhost:3000/api/posts/
+Content-Type: application/json
+Authorization: 
+
+{
+    "title": "my first post",
+    "description": "learned express",
+    "url": "",
+    "status": "LEARNED"
+}
