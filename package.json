@@ -1,0 +1,25 @@
+{
+  "name": "mern-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sillysavant/mern-learnit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sillysavant/mern-learnit/issues"
+  },
+  "homepage": "https://github.com/sillysavant/mern-learnit#readme",
+  "dependencies": {
+    "concurrently": "^7.4.0"
+  }
+}
