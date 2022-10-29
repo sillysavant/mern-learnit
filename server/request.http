@@ -12,37 +12,37 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "user01",
-    "password": "1234"
+    "username": "user02",
+    "password": "12345"
 }
 
 ###
 
-POST https://localhost:3000/api/posts
+POST http://localhost:3000/api/posts
 Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
 
 {
-    "title": "my first post",
-    "description": "learn express",
-    "url": "expressjs.com",
-    "status": "LEARNING"
+    "title": "my second lesson",
+    "description": "learn react",
+    "url": "reactjs.org",
+    "status": "TO LEARN"
 }
 
 ###
 
-GET https://localhost:3000/api/posts
+GET http://localhost:3000/api/posts
 Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
 
 ###
-PUT https://localhost:3000/api/posts/
+PUT http://localhost:3000/api/posts/635ce75ccdfeb3b6ecef80ca
 Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
 
 {
-    "title": "my first post",
-    "description": "learned express",
-    "url": "",
+    "title": "my second post",
+    "description": "learned struts",
+    "url": "https://struts.apache.org",
     "status": "LEARNED"
 }

@@ -26,9 +26,15 @@ router.post('/', verifyToken, async(req, res) => {
         const newPost = await Post.create({
             title,
             description,
-            url: url.startsWith('https://') ? url : `https:${url}`,
+            url: url.startsWith('https://') ? url : `https://${url}`,
             status: status || 'TO LEARN',
             user: req.userId
+        })
+
+        res.json({
+            success: true,
+            message: 'Happy learning!',
+            post: newPost
         })
     } catch (error) {
         console.log(error)
@@ -94,7 +100,32 @@ router.put('/:id', verifyToken, async(req, res) => {
               })
         }
 
-        res.json({success: true, message: 'Excellent progress', updatedPost})
+        res.json({success: true, message: 'Excellent progress!', updatedPost})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({success: false, message: 'Internal server error'})
+    }
+})
+
+// @route DELETE /api/posts
+// @desc Delete posts
+// @access Private
+router.delete('/:id', verifyToken, async(req, res) => {
+    try {
+        const postDeleteCondition = {_id: req.params.id, user: req.userId}
+        let deletedPost = await Post.findOneAndDelete(postDeleteCondition)
+    
+        // Check authorisation
+        if (!deletedPost) {
+            return res
+              .status(401)
+              .json({
+                success: fale,
+                message: 'Unauthorised user or post not found!'
+              })
+        }
+    
+        res.json({success: true, deletedPost})
     } catch (error) {
         console.log(error)
         res.status(500).json({success: false, message: 'Internal server error'})
