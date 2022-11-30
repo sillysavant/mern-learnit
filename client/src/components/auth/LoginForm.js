@@ -1,8 +1,20 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const LoginForm = () => {
+  const [loginForm, setLoginForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  const { username, password } = loginForm;
+
+  const onChangeLoginForm = (event) =>
+    setLoginForm({ ...loginForm, [event.target.name]: event.target.value });
+
   return (
     <>
       <Form className='my-4'>
@@ -11,15 +23,19 @@ const LoginForm = () => {
             type='text'
             placeholder='Username'
             name='username'
+            value={username}
+            onChange={onChangeLoginForm}
             required
           />
         </Form.Group>
 
         <Form.Group className='mt-2'>
           <Form.Control
-            type='text'
+            type='password'
             placeholder='Password'
             name='password'
+            value={password}
+            onChange={onChangeLoginForm}
             required
           />
         </Form.Group>
