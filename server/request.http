@@ -1,42 +1,43 @@
-POST http://localhost:3000/api/auth/register
+POST http://localhost:3030/api/auth/register
 Content-Type: application/json
 
 {
-    "username": "user02",
-    "password": "12345"
+    "email": "",
+    "username": "user01",
+    "password": "1234"
 }
 
 ###
 
-POST http://localhost:3000/api/auth/login
+POST http://localhost:3030/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "user02",
-    "password": "12345"
+    "username": "user01",
+    "password": "1234"
 }
 
 ###
 
-POST http://localhost:3000/api/posts
+POST http://localhost:3030/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzhjNWRlOTZkYjFiMzkzOGFhNTdjZWQiLCJpYXQiOjE2NzAxNDM1ODJ9.VcT-8UAPkdRjBeN-9_DRLe4FefjvBfvtqz2GHQW6Ef0
 
 {
     "title": "my second lesson",
     "description": "learn react",
     "url": "reactjs.org",
-    "status": "TO LEARN"
+    "status": "LEARNING"
 }
 
 ###
 
-GET http://localhost:3000/api/posts
+GET http://localhost:3030/api/posts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
 
 ###
-PUT http://localhost:3000/api/posts/635ce75ccdfeb3b6ecef80ca
+PUT http://localhost:3030/api/posts/635ce75ccdfeb3b6ecef80ca
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
 

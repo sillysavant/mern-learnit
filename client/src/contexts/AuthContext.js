@@ -25,8 +25,20 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const registerUser = async (userForm) => {
+    try {
+      const resp = await axios.post(`${apiUrl}/auth/register`, userForm);
+      if (resp.data.success)
+        localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, resp.data.accessToken);
+
+      return resp.data;
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  };
+
   // Context data
-  const authContextData = { loginUser };
+  const authContextData = { loginUser, registerUser };
 
   // Return provider
   return (
