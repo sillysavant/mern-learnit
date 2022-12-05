@@ -1,7 +1,8 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import { authReducer } from "../reducers/authReducer";
 import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from "./constants";
+import setAuthToken from "../utils/setAuthToken";
 
 export const AuthContext = createContext();
 
@@ -25,6 +26,7 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  // Register
   const registerUser = async (userForm) => {
     try {
       const resp = await axios.post(`${apiUrl}/auth/register`, userForm);
@@ -37,8 +39,41 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  // Load
+  const loadUser = async () => {
+    if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
+      setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME]);
+    }
+
+    try {
+      const resp = await axios.get(`${apiUrl}/auth`);
+      if (resp.data.success) {
+        dispatch({
+          type: "SET_AUTH",
+          payload: { isAuthenticated: true, user: resp.data.user },
+        });
+      } else {
+        localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+        setAuthToken(null);
+        dispatch({
+          type: "SET_AUTH",
+          payload: {
+            isAuthenticated: false,
+            user: null,
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   // Context data
-  const authContextData = { loginUser, registerUser };
+  const authContextData = { loginUser, registerUser, authState };
 
   // Return provider
   return (

@@ -28,7 +28,7 @@ const LoginForm = () => {
     try {
       const loginData = await loginUser(loginForm);
       if (loginData.success) {
-        navigate("dashboard");
+        navigate("/dashboard");
       } else {
       }
     } catch (error) {

@@ -12,7 +12,7 @@ const { json } = require("express");
 // @access Public
 router.get("/", verifyToken, async (req, res) => {
   try {
-    const user = await User.findById(userId).select("-password");
+    const user = await User.findById(req.userId).select("-password");
     if (!user)
       return res
         .status(200)
