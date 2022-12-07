@@ -1,24 +1,24 @@
 import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const RegisterForm = () => {
   // Context
   const { registerUser } = useContext(AuthContext);
 
-  // Router
-  const navigate = useNavigate();
-
   // Local state
   const [registerForm, setRegisterForm] = useState({
     email: "",
     username: "",
     password: "",
+    confirmPassword: "",
   });
 
-  const { email, username, password } = registerForm;
+  const [alert, setAlert] = useState(null);
+
+  const { email, username, password, confirmPassword } = registerForm;
 
   const onChangeRegisterForm = async (event) => {
     setRegisterForm({
@@ -30,11 +30,17 @@ const RegisterForm = () => {
   const register = async (event) => {
     event.preventDefault();
 
+    if (password !== confirmPassword) {
+      setAlert({ type: "danger", message: "Password does not match" });
+      setTimeout(() => setAlert(null), 5000);
+      return;
+    }
+
     try {
       const registerData = await registerUser(registerForm);
-      if (registerData.success) {
-        navigate("/dashboard");
-      } else {
+      if (!registerData.success) {
+        setAlert({ type: "danger", message: registerData.message });
+        setTimeout(() => setAlert(null), 5000);
       }
     } catch (error) {
       console.log(error);
@@ -76,6 +82,17 @@ const RegisterForm = () => {
           />
         </Form.Group>
 
+        <Form.Group className='mt-2'>
+          <Form.Control
+            type='password'
+            placeholder='Confirm Password'
+            name='confirmPassword'
+            onChange={onChangeRegisterForm}
+            value={confirmPassword}
+            required
+          />
+        </Form.Group>
+
         <Form.Group className='mt-4'>
           <Button variant='success' type='submit'>
             Register
@@ -86,7 +103,7 @@ const RegisterForm = () => {
       <p>
         Already have an account?
         <Link to='/login'>
-          <Button variant='info' size='sm' className='ml-2'>
+          <Button variant='info' size='sm' className='ms-2'>
             Login
           </Button>
         </Link>

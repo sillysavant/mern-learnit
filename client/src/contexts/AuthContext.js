@@ -13,32 +13,6 @@ const AuthContextProvider = ({ children }) => {
     user: null,
   });
 
-  // Login
-  const loginUser = async (userForm) => {
-    try {
-      const resp = await axios.post(`${apiUrl}/auth/login`, userForm);
-      if (resp.data.success)
-        localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, resp.data.accessToken);
-
-      return resp.data;
-    } catch (error) {
-      return { success: false, message: error.message };
-    }
-  };
-
-  // Register
-  const registerUser = async (userForm) => {
-    try {
-      const resp = await axios.post(`${apiUrl}/auth/register`, userForm);
-      if (resp.data.success)
-        localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, resp.data.accessToken);
-
-      return resp.data;
-    } catch (error) {
-      return { success: false, message: error.message };
-    }
-  };
-
   // Load
   const loadUser = async () => {
     if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
@@ -72,8 +46,49 @@ const AuthContextProvider = ({ children }) => {
     loadUser();
   }, []);
 
+  // Login
+  const loginUser = async (userForm) => {
+    try {
+      const resp = await axios.post(`${apiUrl}/auth/login`, userForm);
+      if (resp.data.success)
+        localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, resp.data.accessToken);
+
+      await loadUser();
+
+      return resp.data;
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  };
+
+  // Register
+  const registerUser = async (userForm) => {
+    try {
+      const resp = await axios.post(`${apiUrl}/auth/register`, userForm);
+      if (resp.data.success)
+        localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, resp.data.accessToken);
+
+      await loadUser();
+      return resp.data;
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  };
+
+  // Logout
+  const logoutUser = () => {
+    localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+    dispatch({
+      type: "SET_AUTH",
+      payload: {
+        isAuthenticated: false,
+        user: null,
+      },
+    });
+  };
+
   // Context data
-  const authContextData = { loginUser, registerUser, authState };
+  const authContextData = { loginUser, registerUser, logoutUser, authState };
 
   // Return provider
   return (
