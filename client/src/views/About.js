@@ -6,9 +6,12 @@ const About = () => {
   return (
     <Row className='mt-5' style={{ marginRight: 0 }}>
       <Col className='text-center'>
+        <div className='mb-4'>My first MERN project.</div>
+
         <div className='mb-4'>
-          My first MERN project. This app is to help you track what you study.
+          This app is to help you track what you study.
         </div>
+
         <Button
           variant='primary'
           href='https://github.com/sillysavant'

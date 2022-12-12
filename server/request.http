@@ -13,37 +13,37 @@ POST http://localhost:3030/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "user01",
-    "password": "1234"
+    "username": "user02",
+    "password": "12345"
 }
 
 ###
 
 POST http://localhost:3030/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzhjNWRlOTZkYjFiMzkzOGFhNTdjZWQiLCJpYXQiOjE2NzAxNDM1ODJ9.VcT-8UAPkdRjBeN-9_DRLe4FefjvBfvtqz2GHQW6Ef0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzhlYmJhNzZlYzRlNTU3MTQ3YjhlMTUiLCJpYXQiOjE2NzA0MDg5OTN9.HveNnc9veEJIyy_wzMtWyw7CA5K2CPTwezW_VWpaX6U
 
 {
-    "title": "my second lesson",
-    "description": "learn react",
-    "url": "reactjs.org",
-    "status": "LEARNING"
+    "title": "my fourth lesson",
+    "description": "learn spring",
+    "url": "spring.io",
+    "status": "TO LEARN"
 }
 
 ###
 
 GET http://localhost:3030/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzhlYmJhNzZlYzRlNTU3MTQ3YjhlMTUiLCJpYXQiOjE2NzA4MzU1NTF9.EClNT74usBssMOnEN-tnQyW0JxPEC2k4eNrEgQEu5w8
 
 ###
-PUT http://localhost:3030/api/posts/635ce75ccdfeb3b6ecef80ca
+PUT http://localhost:3030/api/posts/63906b84ff76e93f19e74ad
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVjZTQ5MDg3MTZlNzRhZGJjOWZhNGYiLCJpYXQiOjE2NjcwMzM5NzN9.kA4yCVsERTys_ZkACnJgvNjzK9tjnA3y_HEFGPx5rDY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzhlYmJhNzZlYzRlNTU3MTQ3YjhlMTUiLCJpYXQiOjE2NzA4MzQ4OTR9.TH8bAFe3UNg3GqVfu9F1rrokEgBg5-0B2MudOzXs9k8
 
 {
-    "title": "my second post",
-    "description": "learned struts",
+    "title": "second post",
+    "description": "learn struts",
     "url": "https://struts.apache.org",
     "status": "LEARNED"
 }
