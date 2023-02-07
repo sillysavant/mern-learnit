@@ -39,7 +39,7 @@ const SinglePost = ({ post: { _id, status, title, description, url } }) => {
                   </Badge>
                 </Col>
 
-                <Col className='me-0'>
+                <Col className='pe-0'>
                   <ActionButtons url={url} id={_id} />
                 </Col>
               </Row>

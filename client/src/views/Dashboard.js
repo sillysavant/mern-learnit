@@ -7,7 +7,12 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Toast from "react-bootstrap/Toast";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import SinglePost from "../components/posts/SinglePost";
+import AddPostModal from "../components/posts/AddPostModal";
+import addIcon from "../assets/plus-circle-fill.svg";
 
 const Dashboard = () => {
   const {
@@ -19,6 +24,9 @@ const Dashboard = () => {
   const {
     postState: { posts, postLoading },
     getPosts,
+    setShowAddPostModal,
+    showToast: { show, message, type },
+    setShowToast,
   } = useContext(PostContext);
 
   // Get all posts
@@ -46,7 +54,11 @@ const Dashboard = () => {
             </Card.Text>
           </Card.Body>
 
-          <Button variant='primary' className='mx-auto mb-3'>
+          <Button
+            variant='primary'
+            className='mx-auto mb-3'
+            onClick={setShowAddPostModal.bind(this, true)}
+          >
             LearnIt!
           </Button>
         </Card>
@@ -62,11 +74,42 @@ const Dashboard = () => {
             </Col>
           ))}
         </Row>
+
+        <OverlayTrigger
+          placement='left'
+          overlay={<Tooltip>Add a new thing to learn</Tooltip>}
+        >
+          <Button className='btn-floating' onClick={setShowAddPostModal}>
+            <img src={addIcon} alt='add-post' width='60' height='60' />
+          </Button>
+        </OverlayTrigger>
+
+        <Toast
+          show={show}
+          style={{ position: "fixed", top: "20%", right: "10px" }}
+          className={`bg-${type} text-white`}
+          onClose={setShowToast.bind(this, {
+            show: false,
+            message: "",
+            type: null,
+          })}
+          delay={3000}
+          autohide
+        >
+          <Toast.Body>
+            <strong>{message}</strong>
+          </Toast.Body>
+        </Toast>
       </>
     );
   }
 
-  return body;
+  return (
+    <>
+      {body}
+      <AddPostModal />
+    </>
+  );
 };
 
 export default Dashboard;
